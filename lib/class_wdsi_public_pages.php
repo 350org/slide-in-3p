@@ -30,8 +30,12 @@ class Wdsi_PublicPages {
 		add_action('wp_enqueue_scripts', array($this, 'css_load_styles'));
 		add_action('wp_enqueue_scripts', array($this, 'js_load_scripts'));
 
-		$hook = trim($this->_data->get_option('custom_injection_hook'));
-		$hook = $hook ? $hook : Wdsi_SlideIn::get_default_injection_hook();
+		$hook = $this->_data->get_option('custom_injection_hook'); 
+		if (!empty($hook)) { 
+			$hook = trim($hook);
+		} else {
+			$hook = Wdsi_SlideIn::get_default_injection_hook();
+		}
 		add_action($hook, array($this, 'add_message'));
 		
 		add_filter('wdsi_content', 'wpautop');

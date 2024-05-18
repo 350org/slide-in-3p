@@ -25,25 +25,25 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 */
 
-define ('WDSI_CURRENT_VERSION', '1.2', true);
-define ('WDSI_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)), true);
-define ('WDSI_PROTOCOL', (is_ssl() ? 'https://' : 'http://'), true);
+define ('WDSI_CURRENT_VERSION', '1.2');
+define ('WDSI_PLUGIN_SELF_DIRNAME', basename(dirname(__FILE__)));
+define ('WDSI_PROTOCOL', (is_ssl() ? 'https://' : 'http://'));
 
 //Setup proper paths/URLs and load text domains
 if (is_multisite() && defined('WPMU_PLUGIN_URL') && defined('WPMU_PLUGIN_DIR') && file_exists(WPMU_PLUGIN_DIR . '/' . basename(__FILE__))) {
-	define ('WDSI_PLUGIN_LOCATION', 'mu-plugins', true);
-	define ('WDSI_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR, true);
-	define ('WDSI_PLUGIN_URL', str_replace('http://', WDSI_PROTOCOL, WPMU_PLUGIN_URL), true);
+	define ('WDSI_PLUGIN_LOCATION', 'mu-plugins');
+	define ('WDSI_PLUGIN_BASE_DIR', WPMU_PLUGIN_DIR);
+	define ('WDSI_PLUGIN_URL', str_replace('http://', WDSI_PROTOCOL, WPMU_PLUGIN_URL));
 	$textdomain_handler = 'load_muplugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . WDSI_PLUGIN_SELF_DIRNAME . '/' . basename(__FILE__))) {
-	define ('WDSI_PLUGIN_LOCATION', 'subfolder-plugins', true);
-	define ('WDSI_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDSI_PLUGIN_SELF_DIRNAME, true);
-	define ('WDSI_PLUGIN_URL', str_replace('http://', WDSI_PROTOCOL, WP_PLUGIN_URL) . '/' . WDSI_PLUGIN_SELF_DIRNAME, true);
+	define ('WDSI_PLUGIN_LOCATION', 'subfolder-plugins');
+	define ('WDSI_PLUGIN_BASE_DIR', WP_PLUGIN_DIR . '/' . WDSI_PLUGIN_SELF_DIRNAME);
+	define ('WDSI_PLUGIN_URL', str_replace('http://', WDSI_PROTOCOL, WP_PLUGIN_URL) . '/' . WDSI_PLUGIN_SELF_DIRNAME);
 	$textdomain_handler = 'load_plugin_textdomain';
 } else if (defined('WP_PLUGIN_URL') && defined('WP_PLUGIN_DIR') && file_exists(WP_PLUGIN_DIR . '/' . basename(__FILE__))) {
-	define ('WDSI_PLUGIN_LOCATION', 'plugins', true);
-	define ('WDSI_PLUGIN_BASE_DIR', WP_PLUGIN_DIR, true);
-	define ('WDSI_PLUGIN_URL', str_replace('http://', WDSI_PROTOCOL, WP_PLUGIN_URL), true);
+	define ('WDSI_PLUGIN_LOCATION', 'plugins');
+	define ('WDSI_PLUGIN_BASE_DIR', WP_PLUGIN_DIR);
+	define ('WDSI_PLUGIN_URL', str_replace('http://', WDSI_PROTOCOL, WP_PLUGIN_URL));
 	$textdomain_handler = 'load_plugin_textdomain';
 } else {
 	// No textdomain is loaded because we can't determine the plugin location.
